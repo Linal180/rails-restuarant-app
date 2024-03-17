@@ -1,0 +1,5 @@
+<% if like %>
+  <span id="will-split-votes-<%= restaurant.id %>" class="text-green-500 ml-1"> <%= restaurant.will_split_votes || 0 %></span>
+<% else %>
+  <span id="wont-split-votes-<%= restaurant.id %>" class="text-red-500 ml-1"> <%= restaurant.wont_split_votes || 0 %></span>
+<% end %>  

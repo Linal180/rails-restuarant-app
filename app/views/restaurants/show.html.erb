@@ -1,0 +1,30 @@
+<!-- app/views/restaurants/show.html.erb -->
+<div class="container mx-auto mt-8">
+  <div class="flex justify-between mb-4">
+    <%= link_to "Go Back", restaurants_path, class: "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded" %>
+    <h1 class="text-3xl font-semibold"><%= @restaurant.name %></h1>
+    <%= link_to "Edit", edit_restaurant_path(@restaurant), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+  </div>
+  <div class="flex items-center justify-center">
+    <div>
+      <h3 class="text-2xl font-semibold"><%= @restaurant.location %></h3>
+    </div>
+  </div>
+
+
+  
+  <div class="bg-white rounded-lg shadow-md p-4">
+  
+    
+    <!-- Like icon -->
+    <div class="flex items-center mt-2">
+      <div class="flex items-center mr-4">
+        <%= render 'shared/svgs/thumbs_up' %>
+        <%= render partial: 'vote_count', locals: { restaurant: @restaurant, like: true } %>
+      </div>
+      <div class="flex items-center mr-4">
+        <%= render 'shared/svgs/thumbs_down' %>
+        <%= render partial: 'vote_count', locals: { restaurant: @restaurant, like: false } %>
+      </div>
+    </div>
+  </div>

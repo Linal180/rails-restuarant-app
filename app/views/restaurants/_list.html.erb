@@ -1,0 +1,12 @@
+<div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+  <% if @restaurants.any? %>
+  <% restaurants.each do |restaurant| %>
+    
+    <%= render 'restaurant', restaurant: restaurant %>
+  <% end %>
+  <% else %>
+  <div class="bg-white rounded-lg shadow-md p-4">
+    <h2 class="text-lg font-semibold">No Restaurants found..</h2>
+    </div>
+  <% end %>
+</div>

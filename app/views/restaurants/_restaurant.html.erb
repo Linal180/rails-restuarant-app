@@ -1,0 +1,28 @@
+
+<div class="hover:no-underline" >
+  <div class="bg-white rounded-lg shadow-md p-4 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+    <h2 class="text-xl font-semibold mb-2" data-turbo="false"><%= link_to restaurant.name, restaurant %></h2>
+    
+    <div class="flex items-center">
+      <form action="<%= like_restaurant_path(restaurant) %>" method="post" class="flex items-center mr-4" data-turbo-frame="restaurants-list">
+        <%= button_tag(type: 'submit', class: 'flex items-center') do %>
+          <%= render 'shared/svgs/thumbs_up' %>
+
+        <% end %>
+        <%= turbo_frame_tag "will-split-votes-#{restaurant.id}" do %>
+          <%= render partial: 'vote_count', locals: { restaurant: restaurant, like: true } %>
+        <% end %>
+      </form>
+
+      <form action="<%= dislike_restaurant_path(restaurant) %>" method="post" class="flex items-center mr-4" data-turbo-frame="restaurants-list">
+        <%= button_tag(type: 'submit', class: 'flex items-center') do %>
+          <%= render 'shared/svgs/thumbs_down' %>
+        <% end %>
+        
+        <%= turbo_frame_tag 'restaurant_list' do %>
+          <%= render partial: 'vote_count', locals: { restaurant: restaurant, like: false } %>
+        <% end %>
+      </form>
+    </div>
+  </div>
+</div >

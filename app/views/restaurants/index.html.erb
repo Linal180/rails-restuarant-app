@@ -1,0 +1,21 @@
+<div class="container mx-auto mt-8">
+  <!-- Top Navigation Header -->
+  <div class="flex justify-between items-center mb-4 bg-gray-100 py-4 px-6 rounded">
+    <h1 class="font-bold text-4xl text-blue-500">Restaurant Voting App</h1>
+
+    <%= link_to "Add New", new_restaurant_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+  </div>
+
+  <!-- Search bar -->
+  <%= form_tag restaurants_path, method: :get, class: "mb-4", remote: true do %>
+    <div class="flex items-center">
+      <%= text_field_tag :search, params[:search], placeholder: "Search by name or location", class: "p-2 border border-gray-300 rounded-l w-full" %>
+      <%= submit_tag "Search", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r ml-2" %>
+    </div>
+  <% end %>
+  
+  <!-- Restaurant cards -->
+  <%= turbo_frame_tag 'restaurant_list' do %>
+    <%= render partial: 'list', locals: { restaurants: @restaurants } %>
+  <% end %>
+</div>
